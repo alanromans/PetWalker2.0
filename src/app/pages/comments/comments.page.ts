@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { arrayRemove } from 'firebase/firestore';
+
 import { Advert } from 'src/app/model/advert';
 import { Comment } from 'src/app/model/comment';
 import { IUser } from 'src/app/model/iuser';
@@ -15,12 +15,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CommentsPage implements OnInit {
   @ViewChild('rating') rating : any;
-
+  
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService, private commentService: CommentsService, private advertService: AdvertService) { }
 
   user: IUser = {} as IUser;
   comment: Comment = {} as Comment;
   advert: Advert = {} as Advert;
+  @Input() halfStar: boolean | undefined;
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -67,8 +68,8 @@ export class CommentsPage implements OnInit {
     this.router.navigateByUrl(`/adverts-info/${this.advert.id}`);
   }
 
-  onRatingChange(rating: number) {
-    console.log('La calificación ha sido modificada y su nuevo valor es: ', rating);
-    // Aquí puedes realizar acciones adicionales en caso de que el valor de la calificación cambie
-  }
+  onRatingChange(rating: any){
+    console.log('The evaluation was modified and now its value is: ',rating);
+    // do your stuff
+  } 
 }

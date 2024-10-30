@@ -12,8 +12,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class AdvertsPostComponent implements OnInit {
   
-  @Input() adverts?: Advert[] | Advert;
-
+  @Input() adverts: Advert[] = [];
   @Output() clickAdvert: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private router: Router, public userService: UserService, public advertService: AdvertService) { }

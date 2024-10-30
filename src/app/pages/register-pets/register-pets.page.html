@@ -5,7 +5,7 @@
     </ion-button>
     <div class="ion-text-center">
       <img color="secondary" class="imagen" (click)="goToHome()"
-        src="../../../assets/img/500_F_227375342_WnitNU3eerXDwuUORymudH4du9eNu8wH.png" alt="">
+        src="../../../assets/img/walker.png" alt="">
     </div>
   </ion-toolbar>
 </ion-header>
@@ -32,19 +32,7 @@
   <p class="ion-margin-start"><b>Raza: </b></p>
   <ion-input type="text" [(ngModel)]="pet.raza"></ion-input>
 
-  <h2 class="ion-margin-start">Fecha de nacimiento</h2>
-    <ion-input readonly="true" button="true" id="open-date-input" placeholder="Haz clic aquí" class="ion-margin-start" [value]="pet.fechaNacimiento">
-      <ion-popover trigger="open-date-input" show-backdrop="false">
-        <ng-template>
-          <ion-datetime
-            #popoverDatetime
-            presentation="date"
-            (ionChange)="pet.fechaNacimiento = formatDate(popoverDatetime.value) " 
-          ></ion-datetime>
-        </ng-template>
-      </ion-popover>
-    </ion-input>
-
+ 
   <p class="ion-margin-start"><b>Sexo: </b></p>
   <ion-select [(ngModel)]="pet.sexo">
     <ion-select-option value="Hembra" mode="ios">Hembra</ion-select-option>

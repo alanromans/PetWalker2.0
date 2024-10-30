@@ -22,7 +22,7 @@ export class RegisterPetsPage implements OnInit {
   constructor(private petService: PetService, private userService: UserService, private router: Router, private photoService: PhotoService) { }
 
   ngOnInit() {
-    this.userService.getUser().subscribe((data) => {
+    this.userService.getIUser().subscribe((data) => {
       console.log(data);
       this.users = data;
       this.user = this.users[0];
@@ -50,9 +50,5 @@ export class RegisterPetsPage implements OnInit {
     const uploadPhoto = await this.photoService.uploadFile(doPhoto, `Pets/${this.pet.nombre} - ${this.user.name} ${this.user.apellidos}`);
     this.pet.photo = uploadPhoto;
   }
-
-  formatDate(value: string) {
-    return format(parseISO(value), 'dd MMM yyyy');
-  }    
 
 }

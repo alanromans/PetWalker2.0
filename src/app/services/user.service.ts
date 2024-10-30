@@ -23,33 +23,33 @@ export class UserService {
     return currentUser.uid;
   }
 
-  async addUser(user: IUser) {
+  async addUser(user: IUser): Promise<void> {
     const uid = this.getCurrentUserUid();  // Verificación del usuario
     const newDoc = doc(collection(this.firestore, `users/${uid}/iuser`));
     user.userId = newDoc.id;
     await setDoc(newDoc, user);
   }
 
-  getUser(): Observable<IUser[]> {
-    const uid = this.getCurrentUserUid();  // Verificación del usuario
+  getIUser(): Observable<IUser[]> {
+    const uid = this.getCurrentUserUid();
     return collectionData(collection(this.firestore, `users/${uid}/iuser`), { idField: 'userId' }) as Observable<IUser[]>;
   }
-
-  async deleteUser(id: string) {
+  
+  async deleteUser(id: string): Promise<void> {
     const uid = this.getCurrentUserUid();  // Verificación del usuario
     const docRef = doc(this.firestore, `users/${uid}/iuser/${id}`);
     await deleteDoc(docRef);
   }
 
-  updateUser(user: IUser) {
+  async updateUser(user: IUser): Promise<void> {
     const uid = this.getCurrentUserUid();  // Verificación del usuario
     const docRef = doc(this.firestore, `users/${uid}/iuser/${user.userId}`);
-    setDoc(docRef, user);
+    await setDoc(docRef, user);
   }
 
-  updatePet(pet: Pet) {
+  async updatePet(pet: Pet): Promise<void> {
     const uid = this.getCurrentUserUid();  // Verificación del usuario
     const docRef = doc(this.firestore, `users/${uid}/Pet/${pet.petId}`);
-    setDoc(docRef, pet);
+    await setDoc(docRef, pet);
   }
 }

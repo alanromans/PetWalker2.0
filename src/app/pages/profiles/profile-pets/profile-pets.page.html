@@ -12,11 +12,11 @@
 <ion-content>
   <h1 class="ion-text-center title"><u>Perfil Mascota</u></h1>
   <ion-slides>
-    <ion-slide class="ion-text-left" *ngFor="let p of pets">
+    <ion-slide class="ion-text-left" swiperSlide *ngFor="let p of pets">
       <div class="ion-text-center foto">
-        <img *ngIf="!pet.edit" [src]="pet.photo ?? 'https://png.pngtree.com/png-vector/20190623/ourlarge/pngtree-accountavataruser-blue-dotted-line-line-icon-png-image_1491314.jpg'">
+        <img *ngIf="!pet.edit" [src]="pet.photo || 'https://png.pngtree.com/png-vector/20190623/ourlarge/pngtree-accountavataruser-blue-dotted-line-line-icon-png-image_1491314.jpg'">
         <img (click)="openCamera()"  *ngIf="pet.edit"
-          [src]="pet.photo ??  'https://png.pngtree.com/png-vector/20190623/ourlarge/pngtree-accountavataruser-blue-dotted-line-line-icon-png-image_1491314.jpg'">
+          [src]="pet.photo || 'https://png.pngtree.com/png-vector/20190623/ourlarge/pngtree-accountavataruser-blue-dotted-line-line-icon-png-image_1491314.jpg'">
       </div>
 
       <ion-grid fixed class="ion-margin-start">
@@ -45,16 +45,6 @@
         </ion-row>
       </ion-grid>
 
-      
-
-      <ion-grid fixed class="ion-margin-start">
-        <ion-row>
-          <ion-col size="5"><b>Edad:</b></ion-col>
-          <ion-col size="6" class="ion-col">
-            <ion-input class="info" *ngIf="!p.edit" readonly [value]="edad()"></ion-input>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
 
       <ion-grid fixed class="ion-margin-start">
         <ion-row>

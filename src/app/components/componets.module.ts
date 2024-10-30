@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdvertsPostComponent } from './adverts-post/adverts-post.component';
 import { IonicModule } from '@ionic/angular';
@@ -10,6 +10,7 @@ import { CommentComponent } from './comment/comment.component';
  imports: [
    CommonModule, IonicModule
  ],
- exports: [AdvertsPostComponent, RateComponent, CommentComponent]
+ exports: [AdvertsPostComponent, RateComponent, CommentComponent],
+ schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ComponentsModule { }

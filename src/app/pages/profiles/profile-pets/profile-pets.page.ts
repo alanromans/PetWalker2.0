@@ -22,7 +22,7 @@ export class ProfilePetsPage implements OnInit {
   pets!: Pet[];
 
   ngOnInit() {
-    this.userService.getUser().subscribe((data) => {
+    this.userService.getIUser().subscribe((data) => {
       console.log(data);
       this.users = data;
       this.user = this.users[0];

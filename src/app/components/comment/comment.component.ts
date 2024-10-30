@@ -8,9 +8,10 @@ import { Comment } from 'src/app/model/comment';
   styleUrls: ['./comment.component.scss'],
 })
 export class CommentComponent  implements OnInit {
-  @Input() comments!: Comment[];  // Operador ! para evitar problemas de inicialización
-  @Input() adverts: Advert[] = [];
   
+  @Input() comments: Comment[] = []; 
+  @Input() adverts: Advert[] = [];
+
   
   constructor() { }
 

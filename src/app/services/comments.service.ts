@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DocumentData, Firestore } from '@angular/fire/firestore';
 import { collection, deleteDoc, doc, setDoc, collectionGroup, query, where } from 'firebase/firestore';
 import { collectionData } from 'rxfire/firestore';
-import { Observable } from 'rxjs';
+
 import { Comment } from '../model/comment';
 import { AuthService } from './auth.service';
 

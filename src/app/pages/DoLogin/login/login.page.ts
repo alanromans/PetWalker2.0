@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
       const user = this.authService.getCurrentUser();
       if (user && user.uid) {
         console.log(user.uid);  // Verificamos si el usuario tiene uid
-        this.userService.getUser().subscribe(data => {
+        this.userService.getIUser().subscribe(data => {
           if (data.length) this.router.navigateByUrl('/home');
           else this.router.navigateByUrl('/register-selection');
         });
@@ -64,7 +64,7 @@ export class LoginPage implements OnInit {
       const user = this.authService.getCurrentUser();
       if (user && user.uid) {
         console.log(user.uid);  // Verificamos si el usuario tiene uid
-        this.userService.getUser().subscribe(data => {
+        this.userService.getIUser().subscribe(data => {
           if (data.length) this.router.navigateByUrl('/home');
           else this.router.navigateByUrl('/register-selection');
         });

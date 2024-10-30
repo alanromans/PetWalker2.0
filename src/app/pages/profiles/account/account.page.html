@@ -42,15 +42,6 @@
 
     <ion-grid fixed class="ion-margin-start">
       <ion-row>
-        <ion-col size="6"><b>Fecha Nacimiento:</b></ion-col>
-        <ion-col class="ion-col" size="6">
-          <ion-input class="info" *ngIf="!user.edit" readonly [value]="edad()"></ion-input>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-grid fixed class="ion-margin-start">
-      <ion-row>
         <ion-col size="6"><b>Email:</b></ion-col>
         <ion-col class="ion-col" size="6">
           <ion-input class="info" *ngIf="!user.edit" readonly [value]="user.email"></ion-input>

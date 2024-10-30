@@ -14,10 +14,18 @@
   <h1><u>Crea tu comentario</u></h1>
 
   <div class="star">
-    <ionic-rating-component #rating activeIcon="star" defaultIcon="star-outline" halfIcon="strar-half" [halfStar] activeColor="#596CD9"
-      defaultColor="#596CD9" readonly="false" fontSize="35px" (ratingChanged)="onRatingChange($event)"
-      [(ngModel)]="comment.rate" class="ion-text-left ">
-    </ionic-rating-component>
+    <ionic-rating-component
+    #rating
+    activeIcon="star"
+    defaultIcon="star-outline"
+    halfIcon="star-half"
+    [activeColor]="'#596CD9'"
+    [defaultColor]="'#596CD9'"
+    [readonly]="false"
+    [fontSize]="'35px'"
+    (ratingChanged)="onRatingChange($event)"
+    [(ngModel)]="comment.rate">
+  </ionic-rating-component>
   </div>
   
   <p class="ion-text-left">Escribe tu comentario</p>

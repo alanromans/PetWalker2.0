@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, doc, setDoc, deleteDoc, query, where, collectionGroup, DocumentData } from '@angular/fire/firestore';
+import { Firestore, collection, doc, setDoc, deleteDoc, query, where} from '@angular/fire/firestore';
 import { firstValueFrom, Observable } from 'rxjs';
-import { collectionData, docData } from 'rxfire/firestore';
+import { collectionData } from 'rxfire/firestore';
 import { Advert } from '../model/advert';
 import { AuthService } from './auth.service';
 import { IUser } from '../model/iuser';
@@ -55,7 +55,7 @@ export class AdvertService {
     await setDoc(docRef, advert, { merge: true }); // Usar merge para actualizar solo campos específicos
   }
 
-  getAdvertAllUsers(id?: string): Promise<Advert | null> {
+  async getAdvertAllUsers(id?: string): Promise<Advert | null> {
     return firstValueFrom(
       collectionData(
         query(collection(this.firestore, 'users'), where('userId', '==', id)),
@@ -63,8 +63,7 @@ export class AdvertService {
       ) as Observable<IUser[]>
     ).then(async (users) => {
       if (users.length > 0) {
-        const user = users[0] as IUser;
-  
+        const user = users[0];
         const adverts = await firstValueFrom(
           collectionData(
             query(
@@ -77,12 +76,12 @@ export class AdvertService {
         );
   
         if (adverts.length > 0) {
-          const advert = adverts[0]; // Get the first advert
-          advert.nameUser = user.name; // Ensure user.name is a string.
-          return advert; // Return the single advert
+          const advert = adverts[0];
+          advert.nameUser 
+          return advert;
         }
       }
-      return null; // Return null if no user or advert found
+      return null;
     });
   }
 }

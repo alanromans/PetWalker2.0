@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
+import { ComponentsModule } from 'src/app/components/componets.module';
 import { MorePageRoutingModule } from './more-routing.module';
 
 import { MorePage } from './more.page';
@@ -13,7 +13,8 @@ import { MorePage } from './more.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MorePageRoutingModule
+    MorePageRoutingModule,
+    ComponentsModule
   ],
   declarations: [MorePage]
 })

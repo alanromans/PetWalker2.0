@@ -3,25 +3,35 @@ import { Auth } from '@angular/fire/auth';
 import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, User, signInWithPopup } from 'firebase/auth';
 
 const provider = new GoogleAuthProvider();
-const providerF = new FacebookAuthProvider()
+const providerF = new FacebookAuthProvider();
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   
-  user!: User;
+  user: User | null = null;
 
-  constructor(private auth: Auth) { }
+  constructor(private auth: Auth) {
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user;
+        console.log('Usuario autenticado:', user);
+      } else {
+        console.log('No hay usuario autenticado');
+        this.user = null;
+      }
+    });
+  }
 
   login(email: string, pass: string): Promise<boolean> {
     return signInWithEmailAndPassword(this.auth, email, pass).then(
       data => {
-        this.user = data.user;  // Asigna el usuario autenticado
+        this.user = data.user;
         return true;
       },
       error => {
-        console.error(error); // Loguear el error
+        console.error('Error en inicio de sesión:', error);
         return false;
       }
     );
@@ -31,32 +41,47 @@ export class AuthService {
     return getAuth().currentUser;
   }
 
-  logout(){
-    signOut(this.auth);
+  logout(): Promise<void> {
+    return signOut(this.auth).catch(error => console.error('Error al cerrar sesión:', error));
   }
 
   register(email: string, pass: string): Promise<boolean> {
     return createUserWithEmailAndPassword(this.auth, email, pass).then(
       () => true,
-      () => false
+      error => {
+        console.error('Error en registro:', error);
+        return false;
+      }
     );
   }
 
-  resetPass(email: string): Promise<void>{
-    return sendPasswordResetEmail(this.auth, email);
+  resetPass(email: string): Promise<void> {
+    return sendPasswordResetEmail(this.auth, email).catch(error => console.error('Error en restablecer contraseña:', error));
   }
 
-  loginGoogle(): Promise<boolean>{
+  loginGoogle(): Promise<boolean> {
     return signInWithPopup(this.auth, provider).then(
-      () => true,
-      () => false
+      (result) => {
+        this.user = result.user;
+        return true;
+      },
+      (error) => {
+        console.error('Error en inicio de sesión con Google:', error);
+        return false;
+      }
     );
   }
 
-  loginFacebook(): Promise<boolean>{
+  loginFacebook(): Promise<boolean> {
     return signInWithPopup(this.auth, providerF).then(
-      () => true,
-      () => false
+      (result) => {
+        this.user = result.user;
+        return true;
+      },
+      (error) => {
+        console.error('Error en inicio de sesión con Facebook:', error);
+        return false;
+      }
     );
   }
 }

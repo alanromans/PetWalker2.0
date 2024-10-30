@@ -13,10 +13,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./adverts-info.page.scss'],
 })
 export class AdvertsInfoPage implements OnInit {
-  adverts: Advert[] | undefined;
-  users: IUser[] | undefined;
-  advert: Advert = {} as Advert
-  comments: Comment[] | undefined;
+  imgUrl!: string;
+  advert: Advert = { rate: [] } as unknown as Advert;
+  user: IUser = {} as IUser;
+  comments!: Comment[];
 
   constructor(private router: Router, private commentService: CommentsService, public userService: UserService, public advertService: AdvertService, private activatedRoute: ActivatedRoute) { }
 
@@ -36,7 +36,6 @@ export class AdvertsInfoPage implements OnInit {
         this.comments = data;
       });
     }
-
 
   }
 

@@ -22,7 +22,7 @@ export class AccountPage implements OnInit {
   adverts: Advert[] | undefined;
 
   ngOnInit() {
-    this.userService.getUser().subscribe((data) => {
+    this.userService.getIUser().subscribe((data) => {
       console.log(data)
       this.user = data[0];
     }, (err) => console.error(err));

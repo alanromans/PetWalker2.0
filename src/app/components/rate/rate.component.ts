@@ -6,7 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./rate.component.scss'],
 })
 export class RateComponent  implements OnInit {
-  @Input() rate!: number;
+  
+  @Input() rate: number = 0;
 
   constructor() { }
 
